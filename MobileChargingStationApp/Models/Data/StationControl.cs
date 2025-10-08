@@ -8,11 +8,11 @@ public class StationControl
 
     public void DoorOpened()
     {
-        door.Open();
+        door.Unlock();
     }
 
     public void DoorClosed()
     {
-        door.Close();
+        door.Lock();
     }
 }
