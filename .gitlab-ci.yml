@@ -14,7 +14,8 @@ build-and-test:
     # Create Report using ReportGenerator: https://reportgenerator.io/usage
     # When invoking nuget package directly it will execute from sln root folder
     # The report path is therefore set to ./*/*/*/*/coverage.cobertura.xml
-    - 'dotnet ~/.nuget/packages/reportgenerator/*/tools/net8.0/ReportGenerator.dll -reports:./*/*/*/*/coverage.cobertura.xml -targetdir:coveragereport "-reporttypes:Html;TextSummary"'
+    - 'dotnet ~/.nuget/packages/reportgenerator/*/tools/net8.0/ReportGenerator.dll -reports:**/coverage.cobertura.xml -targetdir:coveragereport "-reporttypes:Html;TextSummary"'
+
     # Display Coverage Summary (used by coverage regex to display coverage in GitLab)
     - 'cat ./coveragereport/Summary.txt'
   #  Regex expression applied to job log to subtract number to be displayed in GitLab 
