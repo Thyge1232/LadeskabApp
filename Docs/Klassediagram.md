@@ -1,97 +1,79 @@
 ```mermaid
 classDiagram
-
-
-    class StationControl{
-        int OldId
-
+    %% ---------- Central Controller ----------
+    class StationControl {
+        -oldId: int
+        +StationControl(IDoor, IRfidReader, IDisplay, IChargeControl, ILogger)
     }
 
+    %% ---------- Interfaces (Abstractions) ----------
     class IDoor {
-        <<interface>>
-        lock() void;
-        unlock()void ;
-        DoorOpen() ~~Event~~;
-        DoorClose()~~Event~~;
+        <<Interface>>
+        +LockDoor() void
+        +UnlockDoor() void
+        +DoorOpenedEvent event
+        +DoorClosedEvent event
     }
-   class IRfiReader{
-        <<interface>>
-        RFIdetected(id)~~event~~
-        +int Id
-
-        
+    class IRfidReader {
+        <<Interface>>
+        +RfidDetectedEvent event
     }
-    class RfiReader{
-         RFIdetected(id)~~event~~
-         +int Id
-        
+    class IDisplay {
+        <<Interface>>
+        +ShowInstruction(string) void
+        +ShowChargingInProgress() void
+        +ShowFullyCharged() void
+        +ShowChargingError() void
+        +ClearChargeStatus() void
     }
-    class Door { 
-        
+    class IChargeControl {
+        <<Interface>>
+        +StartCharge() void
+        +StopCharge() void
+        +ChargingFinished event
+        +ChargingError event
     }
     class IUsbCharger {
-        <<interface>>
-        CurrentValueEvent ~~Event~~
-        Current double
-        Connected bool
-        StartCharge()
-        StopCharge()
-
-        
+        <<Interface>>
+        +CurrentValueEvent event
+        +CurrentValue: double
+        +Connected: bool
+        +StartCharge() void
+        +StopCharge() void
     }
-    class UsbCharger{
-        
-    }
-    class ChargeControl{
-        
-    }
-    class IChargeControl{
-        StopCharing()
-        StartCharging()
-
-        ChargingFinished() ~~Event~~
-        ChargingError() ~~Event~~
-    }
-    class ChargeControl{
-        StopCharing()
-        StartCharging()
-
-        ChargingFinished() ~~Event~~
-        ChargingError() ~~Event~~
-    }
- 
-    class IDisplay{
-        <<interface>>
-        ShowChargingInProgress()
-        ShowFullyCharged()
-        ShowChargingError()
-        ClearChargeStatus()   
-        ShowInstruction() 
-
+    class ILogger {
+        <<Interface>>
+        +Log(message: string) void
     }
 
-    class Display{
-        ShowChargingInProgress()
-        ShowFullyCharged()
-        ShowChargingError()
-        ClearChargeStatus()   
-        ShowInstruction()
-
+    %% ---------- Concrete Implementations ----------
+    class Door
+    class RfidReader
+    class Display
+    class ChargeControl {
+        +ChargeControl(IUsbCharger, IDisplay)
     }
+    class UsbChargerSimulator
+    class FileLogger
 
-    %% Relationer
-    StationControl --> IDoor: Har en
-    IDoor <|-- Door: Er en
+    %% ---------- Relationships ----------
+    
+    %% StationControl depends on abstractions
+    StationControl "1" --o "1" IDoor : has-a
+    StationControl "1" --o "1" IRfidReader : has-a
+    StationControl "1" --o "1" IDisplay : has-a
+    StationControl "1" --o "1" IChargeControl : has-a
+    StationControl "1" --o "1" ILogger : has-a
 
-    StationControl--> IRfiReader: Har en
-    IRfiReader <|-- RfiReader: Er en
+    %% ChargeControl depends on abstractions
+    ChargeControl "1" --o "1" IUsbCharger : has-a
+    ChargeControl "1" --o "1" IDisplay : has-a
 
-    StationControl--> IDisplay: Har en
-    IDisplay <|-- Display: Er en
-
-    StationControl --> IChargeControl: Har en
-    IChargeControl <|-- ChargeControl: Er en
-
-    ChargeControl --> IUsbCharger: bruger
-    IUsbCharger <|-- UsbCharger: Er en
+    %% Concrete classes implement interfaces
+    Door ..|> IDoor
+    RfidReader ..|> IRfidReader
+    Display ..|> IDisplay
+    ChargeControl ..|> IChargeControl
+    UsbChargerSimulator ..|> IUsbCharger
+    FileLogger ..|> ILogger
 ```
