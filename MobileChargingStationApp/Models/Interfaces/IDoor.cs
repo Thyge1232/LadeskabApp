@@ -2,7 +2,10 @@ using MobileCharginStation.Models;
 
 namespace MobileCharginStation.Interfaces;
 
-public class IDoor : Door
+public interface IDoor
 {
-    
+    void Lock();
+    void Unlock();
+    event EventHandler DoorOpenedEvent;
+    event EventHandler DoorClosedEvent;
 }

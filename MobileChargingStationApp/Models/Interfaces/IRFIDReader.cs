@@ -2,7 +2,9 @@ using MobileCharginStation.Models;
 
 namespace MobileCharginStation.Interfaces;
 
-public class IRFIDReader : RFIDReader
+public interface IRFIDReader
 {
-    
+    public int id { get; set; }
+    public event EventHandler<int>? RFIDDetectedEvent;
 }
+
