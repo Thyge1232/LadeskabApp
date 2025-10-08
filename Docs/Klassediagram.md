@@ -102,23 +102,23 @@ classDiagram
     
     %% ========== RELATIONER ==========
     %% Lag 1 -> Lag 2
-    StationControl --> IDoor : has-a
-    StationControl --> IRfidReader: has-a
-    StationControl --> IDisplay: has-a
-    StationControl --> IChargeControl: has-a
-    StationControl --> ILogger: has-a
+    StationControl --o IDoor : "has-a"
+    StationControl --o IRfidReader: "has-a"
+    StationControl --o IDisplay: "has-a"
+    StationControl --o IChargeControl: "has-a"
+    StationControl --o ILogger: "has-a"
     
     %% Lag 2 -> Lag 2
-    IChargeControl --> IUsbCharger : uses
-    IChargeControl --> IDisplay : uses
+    IChargeControl --o IUsbCharger : "has-a"
+    IChargeControl --o IDisplay : "has-a"
     
     %% Lag 2 <- Lag 3 (implementations)
-    IDoor <|.. Door : is-a
-    IRfidReader <|.. RfidReader : is-a
-    IDisplay <|.. Display : is-a
-    IChargeControl <|.. ChargeControl : is-a
-    IUsbCharger <|.. UsbChargerSimulator : is-a
-    ILogger <|.. FileLogger : is-a
+    IDoor <|.. Door 
+    IRfidReader <|.. RfidReader  
+    IDisplay <|.. Display  
+    IChargeControl <|.. ChargeControl  
+    IUsbCharger <|.. UsbChargerSimulator 
+    ILogger <|.. FileLogger 
     
     %% Lag 3 -> Lag 2
     ChargeControl --> IUsbCharger
