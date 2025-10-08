@@ -5,15 +5,18 @@ namespace MobileCharginStation.Data;
 public class ChargeControl : IChargeControl
 {
     private readonly IUSBCharger _usbCharger;
+        private readonly IDisplay _display; 
+
 
     public event EventHandler<CurrentEventArgs>? ChargingFinishedEvent;
     public event EventHandler<CurrentEventArgs>? ChargingErrorEvent;
 
     public bool Connected => _usbCharger.Connected;
 
-    public ChargeControl(IUSBCharger usbCharger)
+    public ChargeControl(IUSBCharger usbCharger, IDisplay display)
     {
         _usbCharger = usbCharger;
+        _display = display;
         _usbCharger.CurrentValueEvent += HandleCurrentValue;
     }
 

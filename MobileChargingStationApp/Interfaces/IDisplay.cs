@@ -8,5 +8,5 @@ public interface IDisplay
     void ShowFullyCharged();
     void ShowChargingError();
     void ClearChargeStatus();
-    void ShowInstructions();
+    void ShowInstruction(string message);
 }

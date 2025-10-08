@@ -1,6 +1,7 @@
 ﻿using System;
 using MobileCharginStation.Interfaces;
 using MobileCharginStation.Data;
+using MobileCharginStation.Controllers;
 
 
 class Program
@@ -8,14 +9,28 @@ class Program
     static void Main(string[] args)
     {
         // Assemble your system here from all the classes
-        RFIDReader rfidReader = new RFIDReader();
         Door door = new Door();
+        RFIDReader rfidReader = new RFIDReader();
+        Display display = new Display();
+        FileLogger logger = new FileLogger();
+        UsbChargerSimulator usbCharger = new UsbChargerSimulator();
 
+        // Controller
+        ChargeControl chargeControl = new ChargeControl(usbCharger, display);
+
+        // Main controller
+        StationControl stationControl = new StationControl(door, rfidReader, display, chargeControl, logger);
+
+        
         bool finish = false;
         do
         {
             string input;
-            System.Console.WriteLine("Indtast E, O, C, R: ");
+                Console.WriteLine("\nIndtast kommando:");
+                Console.WriteLine(" O: Åbn dør (Open)");
+                Console.WriteLine(" C: Luk dør (Close)");
+                Console.WriteLine(" R: Scan RFID (Read)");
+                Console.WriteLine(" E: Afslut (Exit)");
             input = Console.ReadLine();
             if (string.IsNullOrEmpty(input)) continue;
 
@@ -26,11 +41,11 @@ class Program
                     break;
 
                 case 'O':
-                    door.Unlock();
+                    door.SimulateDoorOpen();
                     break;
 
                 case 'C':
-                    door.Lock();
+                    door.SimulateDoorClose();
                     break;
 
                 case 'R':

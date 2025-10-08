@@ -21,9 +21,9 @@ public class Display : IDisplay
     {
         Console.WriteLine("Opladning afsluttet");
     }
-    public void ShowInstructions()
+    public void ShowInstruction(string message)
     {
-        Console.WriteLine("Tilslut telefon");
+        Console.WriteLine(message);
     }
 
 

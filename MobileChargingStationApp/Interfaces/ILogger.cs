@@ -1,13 +1,6 @@
 namespace MobileCharginStation.Interfaces;
 
-public interface ILogger
-{
-    public class FileLogger {
-        public void Log(string message)
-        {
-        
-       }
+    public interface ILogger
+    {
+        void Log(string message);
     }
-    
-
-}

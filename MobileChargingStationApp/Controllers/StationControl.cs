@@ -24,12 +24,12 @@ namespace MobileCharginStation.Controllers
         private IChargeControl _charger;
         private int _oldId;
         private IDoor _door;
-        private ILogger _fileLogger;
+        private ILogger _logger;
         private IDisplay _display;
         private IRFIDReader _rfidReader;
 
 
-        public StationControl(IDoor door, IRfidReader rfidReader, IDisplay display, IChargeControl chargeControl, ILogger logger)
+        public StationControl(IDoor door, RFIDReader rfidReader, IDisplay display, IChargeControl chargeControl, ILogger logger)
         {
             _door = door;
             _rfidReader = rfidReader;
@@ -52,7 +52,47 @@ namespace MobileCharginStation.Controllers
 
         //Event handlers
 
-        void HandleRfidDetectedEvent()
+         private void HandleRfidDetectedEvent(object? sender, RFIDEventArgs e)
+        {
+            int id = Convert.ToInt32(e.Rfid);
+            RfidDetected(id);
+        }
+
+        private void HandleDoorOpenedEvent(object? sender, EventArgs e)
+        {
+            if (_state == LadeskabState.Available)
+            {
+                 _state = LadeskabState.DoorOpen;
+                _display.ShowInstruction("Tilslut telefon");
+            }
+        }
+
+        private void HandleDoorClosedEvent(object? sender, EventArgs e)
+        {
+            if (_state == LadeskabState.DoorOpen)
+            {
+                 _state = LadeskabState.Available;
+                _display.ShowInstruction("Indlæs RFID");
+            }
+        }
+
+        private void HandleChargingFinishedEvent(object? sender, EventArgs e) //Ikke med på STM diagram
+        {
+            if (_state == LadeskabState.Locked)
+            {
+                _state = LadeskabState.DoorOpen;
+                _display.ShowInstruction("Tag telefon");
+            }
+        }
+
+        private void HandleChargingErrorEvent(object? sender, EventArgs e)
+        {
+            if (_state == LadeskabState.Locked)
+            {
+                _state = LadeskabState.DoorOpen;
+                _display.ShowInstruction("Fejl. Fjern telefon");
+            }
+        }
 
 
         // Her mangler constructor
@@ -69,7 +109,7 @@ namespace MobileCharginStation.Controllers
                         _charger.StartCharge();
                         _oldId = id;
 
-                        _fileLogger.Log($"Skab låst med RFID: {id}");
+                        _logger.Log($"Skab låst med RFID: {id}");
 
                         _display.ShowInstruction("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
                         _state = LadeskabState.Locked;
@@ -89,7 +129,7 @@ namespace MobileCharginStation.Controllers
                         _charger.StopCharge();
                         _door.Unlock();
 
-                        _fileLogger.Log($"Skab låst med RFID: {id}");
+                        _logger.Log($"Skab låst med RFID: {id}");
 
                         _display.ShowInstruction("Tag din telefon ud af skabet og luk døren");
                         _state = LadeskabState.Available;

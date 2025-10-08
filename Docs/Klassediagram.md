@@ -1,79 +1,126 @@
 ```mermaid
 classDiagram
-    %% ---------- Central Controller ----------
+    direction TB
+    
+    %% ========== LAG 1: PRÆSENTATIONSLAG (ØVERST) ==========
     class StationControl {
         -oldId: int
+        -door: IDoor
+        -rfidReader: IRfidReader
+        -display: IDisplay
+        -chargeControl: IChargeControl
+        -logger: ILogger
         +StationControl(IDoor, IRfidReader, IDisplay, IChargeControl, ILogger)
     }
-
-    %% ---------- Interfaces (Abstractions) ----------
+    
+    %% ========== LAG 2: FORRETNINGSLOGIK - INTERFACES  ==========
     class IDoor {
-        <<Interface>>
-        +LockDoor() void
-        +UnlockDoor() void
+        <<interface>>
         +DoorOpenedEvent event
         +DoorClosedEvent event
+        +LockDoor() void
+        +UnlockDoor() void
     }
+    
     class IRfidReader {
-        <<Interface>>
+        <<interface>>
         +RfidDetectedEvent event
     }
+    
     class IDisplay {
-        <<Interface>>
+        <<interface>>
         +ShowInstruction(string) void
         +ShowChargingInProgress() void
         +ShowFullyCharged() void
         +ShowChargingError() void
         +ClearChargeStatus() void
     }
+    
     class IChargeControl {
-        <<Interface>>
-        +StartCharge() void
-        +StopCharge() void
+        <<interface>>
         +ChargingFinished event
         +ChargingError event
+        +StartCharge() void
+        +StopCharge() void
     }
+    
     class IUsbCharger {
-        <<Interface>>
+        <<interface>>
         +CurrentValueEvent event
         +CurrentValue: double
         +Connected: bool
         +StartCharge() void
         +StopCharge() void
     }
+    
     class ILogger {
-        <<Interface>>
+        <<interface>>
         +Log(message: string) void
     }
-
-    %% ---------- Concrete Implementations ----------
-    class Door
-    class RfidReader
-    class Display
-    class ChargeControl {
-        +ChargeControl(IUsbCharger, IDisplay)
-    }
-    class UsbChargerSimulator
-    class FileLogger
-
-    %% ---------- Relationships ----------
     
-    %% StationControl depends on abstractions
-    StationControl "1" --o "1" IDoor : has-a
-    StationControl "1" --o "1" IRfidReader : has-a
-    StationControl "1" --o "1" IDisplay : has-a
-    StationControl "1" --o "1" IChargeControl : has-a
-    StationControl "1" --o "1" ILogger : has-a
-
-    %% ChargeControl depends on abstractions
-    ChargeControl "1" --o "1" IUsbCharger : has-a
-    ChargeControl "1" --o "1" IDisplay : has-a
-
-    %% Concrete classes implement interfaces
-    Door ..|> IDoor
-    RfidReader ..|> IRfidReader
-    Display ..|> IDisplay
-    ChargeControl ..|> IChargeControl
-    UsbChargerSimulator ..|> IUsbCharger
-    FileLogger ..|> ILogger
+    %% ========== LAG 3: DATA IMPLEMENTERINGER  ==========
+    class Door {
+        +DoorOpenedEvent event
+        +DoorClosedEvent event
+        +LockDoor() void
+        +UnlockDoor() void
+    }
+    
+    class RfidReader {
+        +RfidDetectedEvent event
+    }
+    
+    class Display {
+        +ShowInstruction(string) void
+        +ShowChargingInProgress() void
+        +ShowFullyCharged() void
+        +ShowChargingError() void
+        +ClearChargeStatus() void
+    }
+    
+    class ChargeControl {
+        -usbCharger: IUsbCharger
+        -display: IDisplay
+        +ChargingFinished event
+        +ChargingError event
+        +ChargeControl(IUsbCharger, IDisplay)
+        +StartCharge() void
+        +StopCharge() void
+    }
+    
+    class UsbChargerSimulator {
+        +CurrentValueEvent event
+        +CurrentValue: double
+        +Connected: bool
+        +StartCharge() void
+        +StopCharge() void
+    }
+    
+    class FileLogger {
+        +Log(message: string) void
+    }
+    
+    %% ========== RELATIONER ==========
+    %% Lag 1 -> Lag 2
+    StationControl --> IDoor : has-a
+    StationControl --> IRfidReader: has-a
+    StationControl --> IDisplay: has-a
+    StationControl --> IChargeControl: has-a
+    StationControl --> ILogger: has-a
+    
+    %% Lag 2 -> Lag 2
+    IChargeControl --> IUsbCharger : uses
+    IChargeControl --> IDisplay : uses
+    
+    %% Lag 2 <- Lag 3 (implementations)
+    IDoor <|.. Door : is-a
+    IRfidReader <|.. RfidReader : is-a
+    IDisplay <|.. Display : is-a
+    IChargeControl <|.. ChargeControl : is-a
+    IUsbCharger <|.. UsbChargerSimulator : is-a
+    ILogger <|.. FileLogger : is-a
+    
+    %% Lag 3 -> Lag 2
+    ChargeControl --> IUsbCharger
+    ChargeControl --> IDisplay
 ```
