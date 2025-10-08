@@ -1,6 +1,6 @@
 using MobileCharginStation.Interfaces;
 
-namespace MobileCharginStation.Models;
+namespace MobileCharginStation.Data;
 
 public class Door : IDoor
 {

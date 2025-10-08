@@ -1,4 +1,4 @@
-using MobileCharginStation.Models;
+using MobileCharginStation.Data;
 
 namespace MobileCharginStation.Interfaces;
 

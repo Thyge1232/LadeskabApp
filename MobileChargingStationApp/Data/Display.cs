@@ -1,7 +1,7 @@
 using System;
 using MobileCharginStation.Interfaces;
 
-namespace MobileCharginStation.Models;
+namespace MobileCharginStation.Data;
 
 public class Display : IDisplay
 {
