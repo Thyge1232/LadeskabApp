@@ -29,7 +29,7 @@ namespace MobileCharginStation.Controllers
         private IRFIDReader _rfidReader;
 
 
-        public StationControl(IDoor door, RFIDReader rfidReader, IDisplay display, IChargeControl chargeControl, ILogger logger)
+        public StationControl(IDoor door, IRFIDReader rfidReader, IDisplay display, IChargeControl chargeControl, ILogger logger)
         {
             _door = door;
             _rfidReader = rfidReader;
@@ -80,7 +80,7 @@ namespace MobileCharginStation.Controllers
         {
             if (_state == LadeskabState.Locked)
             {
-                _state = LadeskabState.DoorOpen;
+               // Fjernet  "_state = LadeskabState.DoorOpen;" - Skabet burde ikke åbne automatisk ifølge STM og kun ved korrekt RFID Skan
                 _display.ShowInstruction("Tag telefon");
             }
         }
@@ -89,7 +89,8 @@ namespace MobileCharginStation.Controllers
         {
             if (_state == LadeskabState.Locked)
             {
-                _state = LadeskabState.DoorOpen;
+               // Fjernet  "_state = LadeskabState.DoorOpen;" - Skabet burde ikke åbne automatisk ifølge STM og kun ved korrekt RFID Skan
+               // Hvis der er en fejl vises fejl, og man skanner RFID og fjerner
                 _display.ShowInstruction("Fejl. Fjern telefon");
             }
         }
@@ -129,7 +130,7 @@ namespace MobileCharginStation.Controllers
                         _charger.StopCharge();
                         _door.Unlock();
 
-                        _logger.Log($"Skab låst med RFID: {id}");
+                        _logger.Log($"Skab låst op med RFID: {id}");
 
                         _display.ShowInstruction("Tag din telefon ud af skabet og luk døren");
                         _state = LadeskabState.Available;
