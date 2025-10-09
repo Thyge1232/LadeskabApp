@@ -4,7 +4,7 @@ namespace MobileCharginStation.Data;
 
 public class RFIDEventArgs : EventArgs
 {
-    public string Rfid { get; set; } = string.Empty;
+    public int Rfid { get; set; } // Skal være int ifølge UML [OldId == ID]
 }
 
 public class RFIDReader : IRFIDReader
@@ -15,6 +15,6 @@ public class RFIDReader : IRFIDReader
     public void OnRfidRead(int id)
     {
         this.id = id;
-        RFIDDetectedEvent?.Invoke(this, new RFIDEventArgs { Rfid = id.ToString() });
+        RFIDDetectedEvent?.Invoke(this, new RFIDEventArgs { Rfid = id});
     }
 }
