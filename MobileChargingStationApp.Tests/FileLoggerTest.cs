@@ -7,7 +7,6 @@ namespace MobileChargingStationApp.Tests
     public class FileLoggerTest
     {
         private FileLogger _uut;
-        private string _testLogFile;
 
         [SetUp]
         public void Setup()
