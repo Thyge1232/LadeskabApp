@@ -64,6 +64,7 @@ namespace MobileChargingStationApp.Tests
             Assert.That(_uut.IsDoorLocked, Is.True);
         }
 
+        [Test]
         public void SimulateDoorClose2()
         {
             // Act
