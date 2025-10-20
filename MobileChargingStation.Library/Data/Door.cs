@@ -8,7 +8,7 @@ public class Door : IDoor
     public event EventHandler? DoorOpenedEvent;
     public event EventHandler? DoorClosedEvent;
 
-    private bool IsDoorLocked;
+    public bool IsDoorLocked { get; private set; }
 
     public void Lock()
     {

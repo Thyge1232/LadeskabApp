@@ -7,6 +7,9 @@ public class Display : IDisplay
 {
     // Status for opladning (område 2)
     private string _chargeStatus = "";
+    
+
+    public string ChargeStatus => _chargeStatus;
 
     public void ShowChargingInProgress()
     {
@@ -36,7 +39,7 @@ public class Display : IDisplay
     {
         // Område 1: Brugerinstruktioner
         Console.WriteLine($"[Instruktion] {message}");
-        // Vis også ladestatus hvis den eksisterer
+
         if (!string.IsNullOrEmpty(_chargeStatus))
         {
             Console.WriteLine($"[Status] {_chargeStatus}");

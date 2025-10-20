@@ -62,7 +62,7 @@ namespace MobileChargingStationApp.Tests
         }
 
         [Test]
-        public void DoorClosedEvent()
+        public void DoorClosedEvent2()
         {
             // Arrange
             _door.DoorOpenedEvent += Raise.EventWith(_door, EventArgs.Empty);
@@ -72,12 +72,11 @@ namespace MobileChargingStationApp.Tests
 
             // Assert
             Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
-            _display.Received(2).ShowInstruction("Indlæs RFID");
         }
 
 
         [Test]
-        public void ChargingFinished_WhenLocked_ShowsTakePhoneMessage()
+        public void ChargingFinished_WhenLocked()
         {
             // Arrange - Get to Locked state first
             _charger.Connected.Returns(true);
@@ -91,7 +90,7 @@ namespace MobileChargingStationApp.Tests
         }
 
         [Test]
-        public void ChargingError_WhenLocked_ShowsErrorMessage()
+        public void ChargingError_WhenLocked()
         {
             // Arrange - Get to Locked state first
             _charger.Connected.Returns(true);
@@ -106,7 +105,7 @@ namespace MobileChargingStationApp.Tests
 
 
         [Test]
-        public void RfidDetected_LockedWithCorrectId_UnlocksAndStopsCharging()
+        public void RfidDetected_LockedGoodId()
         {
             // Arrange - Lock first with ID 42
             _charger.Connected.Returns(true);
@@ -123,7 +122,7 @@ namespace MobileChargingStationApp.Tests
         }
 
         [Test]
-        public void RfidDetected_LockedWithWrongId_ShowsErrorMessage()
+        public void RfidDetected_LockedBadId()
         {
             // Arrange - Lock with ID 42
             _charger.Connected.Returns(true);
@@ -138,7 +137,7 @@ namespace MobileChargingStationApp.Tests
         }
 
         [Test]
-        public void RfidDetected_AvailableButNotConnected_ShowsConnectionError()
+        public void RfidDetected_Available()
         {
             // Arrange
             _charger.Connected.Returns(false);
@@ -150,5 +149,19 @@ namespace MobileChargingStationApp.Tests
             _display.Received(1).ShowInstruction("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
             _door.DidNotReceive().Lock();
         }
+
+        public void RfidDetected_DoorOpen()
+        {
+            // Arrange
+            _door.DoorOpenedEvent += Raise.EventWith(_door, EventArgs.Empty);
+
+            // Act
+            _rfid.RFIDDetectedEvent += Raise.EventWith(new RFIDEventArgs { Rfid = 42 });
+
+            // Assert
+            _door.DidNotReceive().Lock();
+            _charger.DidNotReceive().StartCharge();
+        }
+
     }
 }

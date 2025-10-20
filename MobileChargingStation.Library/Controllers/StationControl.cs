@@ -90,8 +90,6 @@ namespace MobileChargingStation.Library.Controllers
         {
             if (_state == LadeskabState.Locked)
             {
-               // Fjernet  "_state = LadeskabState.DoorOpen;" - Skabet burde ikke åbne automatisk ifølge STM og kun ved korrekt RFID Skan
-               // Hvis der er en fejl vises fejl, og man skanner RFID og fjerner
                 _display.ShowInstruction("Fejl. Fjern telefon");
             }
         }
