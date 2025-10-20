@@ -12,15 +12,40 @@ namespace MobileChargingStationApp.Tests
         [SetUp]
         public void Setup()
         {
-            _testLogFile = "test_logfile.txt";
             _uut = new FileLogger();
         }
 
         [Test]
         public void Testlog()
         {
-            Assert.Pass();
+            // Arrange
+            var message = "Dette er en test logbesked.";
+            // Act
+            _uut.Log(message);
+
+            // Assert
+            Assert.That(File.ReadAllText("logfile.txt"), Does.Contain(message));
         }
+
+        [Test]
+        public void TestlogFailure()
+        {
+            // Arrange
+            using var fileStream = new FileStream("logfile.txt", FileMode.Create, FileAccess.Write, FileShare.None);
+            var message = "Test message";
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+
+            // Act
+            _uut.Log(message);
+
+            // Assert
+            var consoleOutput = sw.ToString();
+            Assert.That(consoleOutput, Does.Contain("Error logging to file"));
+            
+            Console.SetOut(Console.Out);
+        }
+
 
     }
 }
