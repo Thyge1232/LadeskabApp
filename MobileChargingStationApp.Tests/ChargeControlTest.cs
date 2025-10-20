@@ -89,7 +89,7 @@ namespace MobileChargingStationApp.Tests
         }
 
         [Test]
-        public void HandleCurrentValue_3mA_RaisesChargingFinishedEvent()
+        public void HandleCurrentValue_3mA()
         {
             // Arrange
             var currentArgs = new CurrentEventArgs { Current = 3.0 };
@@ -106,7 +106,7 @@ namespace MobileChargingStationApp.Tests
 
 
         [Test]
-        public void HandleCurrentValue_5mA_ShowsFullyCharged()
+        public void HandleCurrentValue_5mA()
         {
             // Arrange
             var currentArgs = new CurrentEventArgs { Current = 5.0 };
@@ -119,7 +119,7 @@ namespace MobileChargingStationApp.Tests
         }
 
         [Test]
-        public void HandleCurrentValue_5point1mA_ShowsChargingInProgress()
+        public void HandleCurrentValue_5point1mA()
         {
             // Arrange
             var currentArgs = new CurrentEventArgs { Current = 5.1 };
@@ -129,6 +129,19 @@ namespace MobileChargingStationApp.Tests
 
             // Assert
             _display.Received(1).ShowChargingInProgress();
+        }
+
+        [Test]
+        public void HandleCurrentValue_0mA()
+        {
+            // Arrange
+            var currentArgs = new CurrentEventArgs { Current = 0 };
+
+            // Act
+            _charger.CurrentValueEvent += Raise.EventWith(_charger, currentArgs);
+
+            // Assert
+            _display.Received(1).ClearChargeStatus();
         }
     }
 }
