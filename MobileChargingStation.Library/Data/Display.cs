@@ -5,24 +5,50 @@ namespace MobileChargingStation.Library.Data;
 
 public class Display : IDisplay
 {
+    // Status for opladning (område 2)
+    private string _chargeStatus = "";
+
     public void ShowChargingInProgress()
     {
-        Console.WriteLine("Opladning i gang");
+        _chargeStatus = "Opladning i gang";
+        UpdateDisplay();
     }
+    
     public void ShowFullyCharged()
     {
-        Console.WriteLine("Telefon fuldt opladet");
+        _chargeStatus = "Telefon fuldt opladet";
+        UpdateDisplay();
     }
+    
     public void ShowChargingError()
     {
-        Console.WriteLine("Fejl ved opladning");
+        _chargeStatus = "Fejl ved opladning";
+        UpdateDisplay();
     }
+    
     public void ClearChargeStatus()
     {
-        Console.WriteLine("Opladning afsluttet");
+        _chargeStatus = "";
+        UpdateDisplay();
     }
+    
     public void ShowInstruction(string message)
     {
-        Console.WriteLine(message);
+        // Område 1: Brugerinstruktioner
+        Console.WriteLine($"[Instruktion] {message}");
+        // Vis også ladestatus hvis den eksisterer
+        if (!string.IsNullOrEmpty(_chargeStatus))
+        {
+            Console.WriteLine($"[Status] {_chargeStatus}");
+        }
+    }
+
+    private void UpdateDisplay()
+    {
+        // Område 2: Opladningsstatus
+        if (!string.IsNullOrEmpty(_chargeStatus))
+        {
+            Console.WriteLine($"[Status] {_chargeStatus}");
+        }
     }
 }

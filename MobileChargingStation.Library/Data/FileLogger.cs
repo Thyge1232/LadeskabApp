@@ -11,7 +11,7 @@ public class FileLogger : ILogger
     {
         try
         {
-            string logEntry = $"{DateTime.Now:HH:mm:ss}- {message}";
+            string logEntry = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}";
 
             using (StreamWriter writer = new StreamWriter(_logFilePath, true))
             {//StreamWriter med 'true' for at tilføje til filen

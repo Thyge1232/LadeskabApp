@@ -13,14 +13,14 @@ namespace MobileChargingStation.Library.Controllers
     public class StationControl
     {
         // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
-        private enum LadeskabState
+        public enum LadeskabState
         {
             Available,
             Locked,
             DoorOpen
         };
         // Her mangler flere member variable
-        private LadeskabState _state;
+        public LadeskabState _state;
         private IChargeControl _charger;
         private int _oldId;
         private IDoor _door;
@@ -62,9 +62,10 @@ namespace MobileChargingStation.Library.Controllers
         {
             if (_state == LadeskabState.Available)
             {
-                 _state = LadeskabState.DoorOpen;
-                _display.ShowInstruction("Tilslut telefon");
+                _state = LadeskabState.DoorOpen;
+                _display.ShowInstruction("Tilslut telefon eller tag telefon");
             }
+            
         }
 
         private void HandleDoorClosedEvent(object? sender, EventArgs e)

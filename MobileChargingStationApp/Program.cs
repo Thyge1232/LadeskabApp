@@ -52,8 +52,11 @@ class Program
                     System.Console.WriteLine("Indtast RFID id: ");
                     string? idString = System.Console.ReadLine();
 
-                    int id = Convert.ToInt32(idString);
-                    rfidReader.OnRfidRead(id);
+                    if (!string.IsNullOrEmpty(idString))
+                    {
+                        int id = Convert.ToInt32(idString);
+                        rfidReader.OnRfidRead(id);
+                    }
                     break;
 
                 default:

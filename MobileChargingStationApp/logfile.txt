@@ -1,3 +1,13 @@
 20:33:48- Skab låst med RFID: 123
 10:13:08- Skab låst med RFID: 123
 10:20:08- Skab låst med RFID: 123
+10:36:24- Skab låst med RFID: 123
+2025-10-20 10:50:00 - Skab låst med RFID: 123
+2025-10-20 10:50:08 - Skab låst op med RFID: 123
+2025-10-20 10:54:19 - Skab låst med RFID: 123
+2025-10-20 10:55:45 - Skab låst op med RFID: 123
+2025-10-20 11:17:16 - Skab låst med RFID: 123
+2025-10-20 11:17:43 - Skab låst med RFID: 123
+2025-10-20 11:18:06 - Skab låst op med RFID: 123
+2025-10-20 11:19:18 - Skab låst med RFID: 123
+2025-10-20 11:19:40 - Skab låst op med RFID: 123

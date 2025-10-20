@@ -9,4 +9,6 @@ public interface IUSBCharger
     bool Connected { get; }
     void StartCharge();
     void StopCharge();
+    void SimulateConnected(bool connected);
+    void SimulateOverload(bool overload);
 }
