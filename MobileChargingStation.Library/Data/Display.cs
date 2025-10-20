@@ -1,7 +1,7 @@
 using System;
-using MobileCharginStation.Interfaces;
+using MobileChargingStation.Library.Interfaces;
 
-namespace MobileCharginStation.Data;
+namespace MobileChargingStation.Library.Data;
 
 public class Display : IDisplay
 {
@@ -25,8 +25,4 @@ public class Display : IDisplay
     {
         Console.WriteLine(message);
     }
-
-
-
-
 }

@@ -1,6 +1,6 @@
-using MobileCharginStation.Interfaces;
+using MobileChargingStation.Library.Interfaces;
 
-namespace MobileCharginStation.Data;
+namespace MobileChargingStation.Library.Data;
 
 public class ChargeControl : IChargeControl
 {

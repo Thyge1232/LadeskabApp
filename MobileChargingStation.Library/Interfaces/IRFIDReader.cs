@@ -1,6 +1,6 @@
-using MobileCharginStation.Data;
+using MobileChargingStation.Library.Data;
 
-namespace MobileCharginStation.Interfaces;
+namespace MobileChargingStation.Library.Interfaces;
 
 public interface IRFIDReader
 {
@@ -8,4 +8,3 @@ public interface IRFIDReader
     public event EventHandler<RFIDEventArgs>? RFIDDetectedEvent;
     public void OnRfidRead(int id);
 }
-

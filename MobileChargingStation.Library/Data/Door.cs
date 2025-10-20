@@ -1,5 +1,7 @@
-// I Door.cs
-using MobileCharginStation.Interfaces;
+using System;
+using MobileChargingStation.Library.Interfaces;
+
+namespace MobileChargingStation.Library.Data;
 
 public class Door : IDoor
 {

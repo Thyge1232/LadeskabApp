@@ -9,3 +9,6 @@
 | Morten Refshøj | 202309626   |
 
 https://gitlab.au.dk/4-semester1/swt-aflevering-2
+
+https://gitlab.au.dk/4-semester1/swt-aflevering-2/docs
+

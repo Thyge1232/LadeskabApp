@@ -1,7 +1,7 @@
-﻿using System;
-using MobileCharginStation.Interfaces;
-using MobileCharginStation.Data;
-using MobileCharginStation.Controllers;
+using System;
+using MobileChargingStation.Library.Interfaces;
+using MobileChargingStation.Library.Data;
+using MobileChargingStation.Library.Controllers;
 
 
 class Program
@@ -25,7 +25,7 @@ class Program
         bool finish = false;
         do
         {
-            string input;
+            string? input;
                 Console.WriteLine("\nIndtast kommando:");
                 Console.WriteLine(" O: Åbn dør (Open)");
                 Console.WriteLine(" C: Luk dør (Close)");
@@ -50,7 +50,7 @@ class Program
 
                 case 'R':
                     System.Console.WriteLine("Indtast RFID id: ");
-                    string idString = System.Console.ReadLine();
+                    string? idString = System.Console.ReadLine();
 
                     int id = Convert.ToInt32(idString);
                     rfidReader.OnRfidRead(id);

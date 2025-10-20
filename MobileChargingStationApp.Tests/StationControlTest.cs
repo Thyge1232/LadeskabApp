@@ -1,8 +1,8 @@
 using NUnit.Framework;
 using NSubstitute;
-using MobileCharginStation.Controllers;
-using MobileCharginStation.Interfaces;
-using MobileCharginStation.Data;
+using MobileChargingStation.Library.Controllers;
+using MobileChargingStation.Library.Interfaces;
+using MobileChargingStation.Library.Data;
 
 
 namespace MobileChargingStationApp.Tests

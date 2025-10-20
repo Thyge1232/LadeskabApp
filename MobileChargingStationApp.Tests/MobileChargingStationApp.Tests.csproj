@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MobileChargingStationApp\MobileChargingStationApp.csproj" />
+    <ProjectReference Include="..\MobileChargingStation.Library\MobileChargingStation.Library.csproj" />
   </ItemGroup>
 
 </Project>

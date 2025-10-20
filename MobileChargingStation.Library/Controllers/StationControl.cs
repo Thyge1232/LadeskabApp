@@ -4,11 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MobileCharginStation.Interfaces;
-using MobileCharginStation.Data;
+using MobileChargingStation.Library.Interfaces;
+using MobileChargingStation.Library.Data;
 
 
-namespace MobileCharginStation.Controllers
+namespace MobileChargingStation.Library.Controllers
 {
     public class StationControl
     {

@@ -1,8 +1,8 @@
-using MobileCharginStation.Interfaces;
+using MobileChargingStation.Library.Interfaces;
 using System;
 using System.IO;
 
-namespace MobileCharginStation.Data;
+namespace MobileChargingStation.Library.Data;
 
 public class FileLogger : ILogger
 {

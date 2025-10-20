@@ -1,11 +1,6 @@
-using MobileCharginStation.Data;
+using MobileChargingStation.Library.Data;
 
-namespace MobileCharginStation.Interfaces;
-
-public class CurrentEventArgs : EventArgs
-{
-    public double Current { get; set; }
-}
+namespace MobileChargingStation.Library.Interfaces;
 
 public interface IUSBCharger
 {

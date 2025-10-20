@@ -1,11 +1,6 @@
-using MobileCharginStation.Interfaces;
+using MobileChargingStation.Library.Interfaces;
 
-namespace MobileCharginStation.Data;
-
-public class RFIDEventArgs : EventArgs
-{
-    public int Rfid { get; set; } // Skal være int ifølge UML [OldId == ID]
-}
+namespace MobileChargingStation.Library.Data;
 
 public class RFIDReader : IRFIDReader
 {

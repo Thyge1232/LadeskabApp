@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Timers;
-using MobileCharginStation.Interfaces;
+using MobileChargingStation.Library.Interfaces;
 
-namespace MobileCharginStation.Data
+namespace MobileChargingStation.Library.Data
 {
     public class UsbChargerSimulator : IUSBCharger
     {

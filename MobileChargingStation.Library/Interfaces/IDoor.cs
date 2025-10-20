@@ -1,6 +1,4 @@
-using MobileCharginStation.Data;
-
-namespace MobileCharginStation.Interfaces;
+namespace MobileChargingStation.Library.Interfaces;
 
 public interface IDoor
 {
