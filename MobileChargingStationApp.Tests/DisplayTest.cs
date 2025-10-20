@@ -79,5 +79,18 @@ namespace MobileChargingStationApp.Tests
             // Assert
             Assert.That(_uut.ChargeStatus, Is.EqualTo(""));
         }
+
+        [Test]
+        public void ShowInstruction2()
+        {
+            // Arrange
+            _uut.ShowChargingError();
+
+            // Act
+            _uut.ShowInstruction("Test besked 2");
+
+            // Assert
+            Assert.That(_uut.ChargeStatus, Is.EqualTo("Fejl ved opladning"));
+        }
     }
 }

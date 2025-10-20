@@ -150,6 +150,7 @@ namespace MobileChargingStationApp.Tests
             _door.DidNotReceive().Lock();
         }
 
+        [Test]
         public void RfidDetected_DoorOpen()
         {
             // Arrange
