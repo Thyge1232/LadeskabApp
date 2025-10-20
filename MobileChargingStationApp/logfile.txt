@@ -11,3 +11,6 @@
 2025-10-20 11:18:06 - Skab låst op med RFID: 123
 2025-10-20 11:19:18 - Skab låst med RFID: 123
 2025-10-20 11:19:40 - Skab låst op med RFID: 123
+2025-10-20 20:14:26 - Skab låst med RFID: 123
+2025-10-20 20:14:35 - Skab låst med RFID: 123
+2025-10-20 20:14:57 - Skab låst op med RFID: 123
