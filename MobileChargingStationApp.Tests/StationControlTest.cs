@@ -3,6 +3,7 @@ using NSubstitute;
 using MobileChargingStation.Library.Controllers;
 using MobileChargingStation.Library.Interfaces;
 using MobileChargingStation.Library.Data;
+using NSubstitute.ReceivedExtensions;
 
 
 namespace MobileChargingStationApp.Tests
@@ -38,6 +39,7 @@ namespace MobileChargingStationApp.Tests
             _rfid.RFIDDetectedEvent += Raise.EventWith(new RFIDEventArgs { Rfid = 42 });
 
             // Assert
+            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Locked));
             _door.Received(1).Lock();
             _charger.Received(1).StartCharge();
             _logger.Received(1).Log("Skab låst med RFID: 42");
@@ -55,25 +57,24 @@ namespace MobileChargingStationApp.Tests
             _door.DoorOpenedEvent += Raise.EventWith(_door, EventArgs.Empty);
 
             // Assert
+            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.DoorOpen));
             _display.Received(1).ShowInstruction("Tilslut telefon eller tag telefon");
         }
 
         [Test]
-        public void DoorClosed_WhenDoorOpen_ChangesToAvailableState()
+        public void DoorClosedEvent()
         {
-            // Arrange - Open door first to get to DoorOpen state
+            // Arrange
             _door.DoorOpenedEvent += Raise.EventWith(_door, EventArgs.Empty);
 
             // Act
             _door.DoorClosedEvent += Raise.EventWith(_door, EventArgs.Empty);
 
             // Assert
-            _display.Received(1).ShowInstruction("Indlæs RFID");
+            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
+            _display.Received(2).ShowInstruction("Indlæs RFID");
         }
 
-        // ==========================================
-        // CHARGING EVENT TESTS
-        // ==========================================
 
         [Test]
         public void ChargingFinished_WhenLocked_ShowsTakePhoneMessage()
@@ -103,9 +104,6 @@ namespace MobileChargingStationApp.Tests
             _display.Received(1).ShowInstruction("Fejl. Fjern telefon");
         }
 
-        // ==========================================
-        // RFID UNLOCK TESTS
-        // ==========================================
 
         [Test]
         public void RfidDetected_LockedWithCorrectId_UnlocksAndStopsCharging()
