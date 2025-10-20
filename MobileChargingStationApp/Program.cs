@@ -2,8 +2,9 @@ using System;
 using MobileChargingStation.Library.Interfaces;
 using MobileChargingStation.Library.Data;
 using MobileChargingStation.Library.Controllers;
+using System.Diagnostics.CodeAnalysis;
 
-
+[ExcludeFromCodeCoverage]
 class Program
 {
     static void Main(string[] args)
