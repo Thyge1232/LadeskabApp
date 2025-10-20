@@ -162,7 +162,27 @@ namespace MobileChargingStationApp.Tests
             // Assert
             _door.DidNotReceive().Lock();
             _charger.DidNotReceive().StartCharge();
+            _logger.DidNotReceive().Log(Arg.Any<string>());
+            // State should remain DoorOpen - testing the "ignore" behavior
+            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.DoorOpen));
         }
+
+        [Test]
+        public void Loggertest()
+        {
+            // Arrange & Act - Lock sequence
+            _charger.Connected.Returns(true);
+            _rfid.RFIDDetectedEvent += Raise.EventWith(new RFIDEventArgs { Rfid = 123 });
+
+            // Act - Unlock sequence  
+            _rfid.RFIDDetectedEvent += Raise.EventWith(new RFIDEventArgs { Rfid = 123 });
+
+            // Assert - Verify both log messages
+            _logger.Received(1).Log("Skab låst med RFID: 123");
+            _logger.Received(1).Log("Skab låst op med RFID: 123");
+            _logger.Received(2).Log(Arg.Any<string>()); // Total 2 log calls
+        }
+
 
     }
 }

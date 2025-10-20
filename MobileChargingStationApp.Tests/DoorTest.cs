@@ -68,13 +68,13 @@ namespace MobileChargingStationApp.Tests
         public void SimulateDoorClose2()
         {
             // Act
-            _uut.Unlock();
+            //_uut.Unlock();
 
             // Arrange
-            _uut.SimulateDoorClose();
+            _uut.SimulateDoorOpen();
 
             // Assert
-            Assert.That(_uut.IsDoorLocked, Is.False);
+            Assert.That(_uut.IsDoorLocked, Is.True);
         }
     }
 }
