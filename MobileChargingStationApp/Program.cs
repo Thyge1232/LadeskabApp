@@ -3,6 +3,7 @@ using MobileChargingStation.Library.Interfaces;
 using MobileChargingStation.Library.Data;
 using MobileChargingStation.Library.Controllers;
 
+
 class Program
 {
     static void Main(string[] args)
@@ -28,7 +29,7 @@ class Program
             Console.WriteLine(" C: Luk dør (Close)");
             Console.WriteLine(" R: Scan RFID (Read)");
             Console.WriteLine(" E: Afslut (Exit)");
-            
+
             string? input = Console.ReadLine();
             if (string.IsNullOrEmpty(input)) continue;
 
