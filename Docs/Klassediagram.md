@@ -18,8 +18,8 @@ classDiagram
         <<interface>>
         +DoorOpenedEvent event
         +DoorClosedEvent event
-        +LockDoor() void
-        +UnlockDoor() void
+        +Lock() void
+        +Unlock() void
     }
     
     class IRfidReader {
@@ -38,8 +38,8 @@ classDiagram
     
     class IChargeControl {
         <<interface>>
-        +ChargingFinished event
-        +ChargingError event
+        +ChargingFinishedEvent
+        +ChargingErrorEvent
         +StartCharge() void
         +StopCharge() void
     }
