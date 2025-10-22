@@ -68,3 +68,4 @@ Under udviklingen har vi oplevet at brugen af GitLab CI gav et godt overblik ove
 - 
 
 #### Ulemper og Udfordringer
+En af de støreste udfordringer ved brugen af CI var at sikre, at alle testprojekter og afhængigheder blev korrekt inkluderet i build-processen. Små fejl i projektfilen eller manglede references kunne gøre at pipelinen fejlede, selvom koden virkede lokalt.  
