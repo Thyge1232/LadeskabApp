@@ -12,14 +12,14 @@ namespace MobileChargingStation.Library.Controllers
 {
     public class StationControl
     {
-        // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
+        // Enum med tilstande 
         public enum LadeskabState
         {
             Available,
             Locked,
             DoorOpen
         };
-        // Her mangler flere member variable
+        
         public LadeskabState _state;
         private IChargeControl _charger;
         private int _oldId;
@@ -77,13 +77,12 @@ namespace MobileChargingStation.Library.Controllers
             }
         }
 
-        private void HandleChargingFinishedEvent(object? sender, EventArgs e) //Ikke med på STM diagram
+        private void HandleChargingFinishedEvent(object? sender, EventArgs e) 
         {
             if (_state == LadeskabState.Locked)
             {
-                // Fjernet  "_state = LadeskabState.DoorOpen;" - Skabet burde ikke åbne automatisk ifølge STM og kun ved korrekt RFID Skan
                 _display.ShowInstruction("Tag telefon");
-                _logger.Log($"Opladning afsluttet for RFID: {_oldId}");  // <---------Denne er tilføjet
+                _logger.Log($"Opladning afsluttet for RFID: {_oldId}");  
             }
         }
 
@@ -92,13 +91,11 @@ namespace MobileChargingStation.Library.Controllers
             if (_state == LadeskabState.Locked)
             {
                 _display.ShowInstruction("Fejl. Fjern telefon");
-                _logger.Log($"Opladningsfejl for RFID: {_oldId}"); //<---------Denne er tilføjet
+                _logger.Log($"Opladningsfejl for RFID: {_oldId}"); 
             }
         }
 
 
-        // Her mangler constructor
-        // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
         private void RfidDetected(int id)
         {
             switch (_state)
@@ -143,6 +140,5 @@ namespace MobileChargingStation.Library.Controllers
                     break;
             }
         }
-        // Her mangler de andre trigger handlere
     }
 }

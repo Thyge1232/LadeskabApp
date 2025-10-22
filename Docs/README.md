@@ -146,6 +146,23 @@ Strukturen følger SOLID-principperne og sikrer samlet set, at systemet er afkob
 
 I forhold til det testbare design er der lavet en UsbChargerSimulator, som agerer en fake, da der er manglende hardware i dette system. Klassen har ansvar for at sende korrekte data videre ind i systemet og samtidig udsende events for at systemet kan have en form for mobiloplader. Denne klasse vil i et korrekt system erstattes af en mobiltelefon.
 
+### State Machine Diagram
+
+![SMT](image.png)
+
+Ud fra det udleverede state machine-diagram kunne vi se, at StationControl-klassen skulle være central for den overordnede logik i systemet.
+I diagrammet kan det ses, at der er tre forskellige tilstande, som ladeskabet kan befinde sig i: Available, Locked og DoorOpen, samt hvilke hændelser der udløser skifte mellem tilstandene.
+
+Vi har implementeret StationControl-klassen som vist i diagrammet.
+Tilstandene bliver repræsenteret af en enum LadeskabState, og den aktuelle tilstand styres af variablen _state.
+Derudover er overgangene implementeret som event handlers såsom HandleDoorOpenedEvent og HandleRfidDetectedEvent, som reagerer på hændelser fra IDoor og IRFIDReader.
+
+Kernen i den tilstandsafhængige logik er implementeret som en switch(_state) i metoden RfidDetected.
+Switch-strukturen afgør, hvordan systemet skal reagere på en RFID-scanning, afhængigt af om ladeskabet er ledigt, låst eller åbent.
+
+
+
+
 ### Sekvensdiagram
 
 ```mermaid
