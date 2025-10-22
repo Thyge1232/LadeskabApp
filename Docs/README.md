@@ -60,7 +60,7 @@ En negativ ting til dette er at vi ikke har været fysisk til stede når vi har 
 Det har været nyt at arbejde indenfor Continuous Integration, hvor vi har skulle arbejde hver for sig, commite og pushe vores ændringer, for efterfølgende at arbejde videre på en andens fremskridt. Dette har givet os en god forståelse for hvordan arbejdet vil fungere ude blandt virksomheder. 
 
 #### Observationer
-
+Under udviklingen har vi oplevet at brugen af GitLab CI gav et godt overblik over projektets stabilitet. Vi kunne hurtigt se hvis et commit brød buildet eller fik nogen tests til at fejle. På grund af det kunne vi rette fejlene tidligt i processen. Det blev på baggrund af det tydeligt hvor vigtigt det er med automatiserede tests og kontinuerlig integration
 
 #### Fordele
 
