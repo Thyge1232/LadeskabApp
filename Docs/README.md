@@ -256,9 +256,5 @@ Under udviklingen har vi oplevet at brugen af GitLab CI gav et godt overblik ove
 - Fordelen ved at benytte sig af dette koncept er også at sikre sig at systemet virker, ved hvert push. På denne måde sikrer vi også at når et andet gruppemedlem har pushet, så virker systemet og der skal ikke bruges timer på at debugge hvad en anden har lavet.
 
 #### Ulemper og Udfordringer
-<<<<<<< HEAD
-En af de støreste udfordringer ved brugen af CI var at sikre, at alle testprojekter og afhængigheder blev korrekt inkluderet i build-processen. Små fejl i projektfilen eller manglede references kunne gøre at pipelinen fejlede, selvom koden virkede lokalt. 
-=======
 - En af de støreste udfordringer ved brugen af CI var at sikre, at alle testprojekter og afhængigheder blev korrekt inkluderet i build-processen. Små fejl i projektfilen eller manglede references kunne gøre at pipelinen fejlede, selvom koden virkede lokalt. 
 - Derudover er der også et par ulemper ved at arbejde på denne måde. Man risikerer hurtigt at lave merge conflicts når man arbejder udelukkende over Git, hvilket ikke er særlig hensigtsmæssigt og hurtigt kan blive noget rod, hvis ikke kommunikationen omkring ansvarsområder er korrekt. 
->>>>>>> ca61cf7f725e84ba004dbe798403e6f79ba121c2
