@@ -83,7 +83,7 @@ namespace MobileChargingStation.Library.Controllers
             {
                 // Fjernet  "_state = LadeskabState.DoorOpen;" - Skabet burde ikke åbne automatisk ifølge STM og kun ved korrekt RFID Skan
                 _display.ShowInstruction("Tag telefon");
-                _logger.Log($"Opladning afsluttet for RFID: {_oldId}");
+                _logger.Log($"Opladning afsluttet for RFID: {_oldId}");  // <---------Denne er tilføjet
             }
         }
 
@@ -92,7 +92,7 @@ namespace MobileChargingStation.Library.Controllers
             if (_state == LadeskabState.Locked)
             {
                 _display.ShowInstruction("Fejl. Fjern telefon");
-                _logger.Log($"Opladningsfejl for RFID: {_oldId}");
+                _logger.Log($"Opladningsfejl for RFID: {_oldId}"); //<---------Denne er tilføjet
             }
         }
 

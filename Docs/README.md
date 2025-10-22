@@ -105,6 +105,7 @@ classDiagram
     }
     
     class FileLogger {
+        + _logFilePath: string
         +Log(message: string) void
     }
     
@@ -136,10 +137,11 @@ classDiagram
 
 
 Systemet er designet efter en klassisk 3-lags arkitektur.
-Øverste lag er Stationkontrol, som fungerer som højniveaumodellen og controlleren for hele systemet. Ved brug af Dependency Injection (DI) er denne klasse uafhængig af de konkrete lavniveau-moduler.
+Øverste lag er Stationkontrol, som fungerer som højniveaumodellen og controlleren for hele systemet. Ved brug af Dependency Injection (DI) er denne klasse uafhængig af de konkrete lavniveau-moduler. Dette sikre at det er muligt at udskifte komponenterne med mocks eller fakes under test. 
 Det midterste lag udgøres af interfaces, som alle er rene. De definerer systemets kontrakter og skaber en klar adskillelse og afkobling mellem lagene. 
 Nederste lag består af implementeringerne. Disse klasser opfylder de kontrakter, der er fastlagt af deres respektive interfaces.
-Strukturen sikrer samlet set, at systemet er afkoblet, uafhængigt og let at teste.
+
+Strukturen følger SOLID-principperne og sikrer samlet set, at systemet er afkoblet, uafhængigt og let at teste.
 
 I forhold til det testbare design er der lavet en UsbChargerSimulator, som agerer en fake, da der er manglende hardware i dette system. Klassen har ansvar for at sende korrekte data videre ind i systemet og samtidig udsende events for at systemet kan have en form for mobiloplader. Denne klasse vil i et korrekt system erstattes af en mobiltelefon.
 
@@ -199,9 +201,9 @@ Der er identificeret fem komponenter i sekvensdiagrammet. ChargeControl fungerer
 
 Selve styringslogikken er pakket ind i et loop, som viser, at eventet CurrentValueEvent sendes løbende fra USBCharger til ChargeControl. ChargeControl lytter passivt efter ændringer i strømmen.
 
-De forskellige betingelser er pakket ind i alternatives, og loopet breakes, når en betingelse er opfyldt. For at holde komponenterne afkoblet sender ChargeControl events op til StationControl om, at opladningen er afsluttet eller der er opstået fejl. StationControl videresender disse events til ILogger.
+De forskellige betingelser er pakket ind i alternatives, og loopet breakes, når en betingelse er opfyldt. For at holde komponenterne afkoblet sender ChargeControl events op til StationControl om, at opladningen er afsluttet eller der er opstået fejl. StationControl reagrerer på event fra ChargeControl ved at kalde ILogger.
 
-Designet følger SOLID-principperne, med fokus på afkobling, fleksibilitet og skalerbarhed. Dette gør systemet lettere at udvide og vedligeholde.
+Designet følger SOLID-principperne, med fokus på afkobling, fleksibilitet og skalerbarhed. Single Repsponsibility Princeple understøttes lideledes da ChargeControl kun tager sig af opladning, og StationControl tager sig af den overordtnede systemtilstand. Dette gør systemet lettere at udvide og vedligeholde.
 
 
 
