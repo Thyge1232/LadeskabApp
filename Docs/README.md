@@ -215,6 +215,7 @@ Systemet er designet med testbarhed som vores primære fokus. Der er lavet inter
 Eksempelvis testes Stationcontrol-klassen ved at erstatte de konkrete implementationer af IDisplay, IChargeControl, IDoor, Osv med mocks.
 Dette gør det så muligt at lave præcise og kontrollerede testscenarier, hvor man kan simulere actions som eksempelvis dør-åbning og opladningsfejl uden fysisk hardware.
 
+UsbChargerSimulator er også lavet som en designbeslutning for at lave en fake til at kunne håndtere de data, der normalt ville komme hvis der var hardwarekomponenter i systemet. Derfor er dette en designbeslutning der er taget. Der kunne godt blive lavet en normal klasse og en fake der begge arver fra IUSBCharger.cs. Dog er det ikke nødvendigt at benytte sig af en normal klasse da der, som tidligere nævnt, ikke er hardwaredele med. Derfor er der blot lavet én enkelt simulator-klasse.
 
 
 ## 3. Refleksioner over Projektet
