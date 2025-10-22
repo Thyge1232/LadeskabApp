@@ -234,6 +234,7 @@ Dette design blev valgt for at lave et afkoblet system, som nemt kan vedligehold
 
 #### Ulemper og Overvejelser
 - Alle interfaces og events kan gør systemet mere komplekst at sætte sig ind i hvis ikke man har kigget på det før.
+- I mindre projekter føles det lidt som ekstra arbejde, da afhængiheder og opsætningen kræver mere kode end et simpelt system.
 
 
 
@@ -241,7 +242,7 @@ Dette design blev valgt for at lave et afkoblet system, som nemt kan vedligehold
 
 For os har det givet os nogle fordele, da vi hver især har forskellige styrker, som vi har implementeret bedst muligt i vores gruppearbejde. Et eksempel i dette tilfælde er at én har fokuseret på diagrammer, én har lavet unit test, én har implementeret systemet. Derudover har vi samtidig arbejdet indover hinandens arbejde, så man har haft en primær prioritet og hjulpet til, hvor det er nødvendigt.
 
-En negativ ting til dette er at vi ikke har været fysisk til stede når vi har arbejdet på det, hvilket gør kommunikationen sværere.
+En negativ ting til dette er at vi ikke altid har været fysisk til stede når vi har arbejdet på det, hvilket gør kommunikationen sværere. Desuden har vi også brugt liveshare når vi sidder sammen da vi nogengange arbejder på samme filer og fandt det mere praktisk at kunne følge med hindanden i real-time, da vi ellers tit kommer til at arbejde ind over hindanden.
 
 ### Refleksion over Fælles Repository og Continuous Integration (CI)
 
@@ -256,9 +257,4 @@ Under udviklingen har vi oplevet at brugen af GitLab CI gav et godt overblik ove
 - Fordelen ved at benytte sig af dette koncept er også at sikre sig at systemet virker, ved hvert push. På denne måde sikrer vi også at når et andet gruppemedlem har pushet, så virker systemet og der skal ikke bruges timer på at debugge hvad en anden har lavet.
 
 #### Ulemper og Udfordringer
-<<<<<<< HEAD
 En af de støreste udfordringer ved brugen af CI var at sikre, at alle testprojekter og afhængigheder blev korrekt inkluderet i build-processen. Små fejl i projektfilen eller manglede references kunne gøre at pipelinen fejlede, selvom koden virkede lokalt. 
-=======
-- En af de støreste udfordringer ved brugen af CI var at sikre, at alle testprojekter og afhængigheder blev korrekt inkluderet i build-processen. Små fejl i projektfilen eller manglede references kunne gøre at pipelinen fejlede, selvom koden virkede lokalt. 
-- Derudover er der også et par ulemper ved at arbejde på denne måde. Man risikerer hurtigt at lave merge conflicts når man arbejder udelukkende over Git, hvilket ikke er særlig hensigtsmæssigt og hurtigt kan blive noget rod, hvis ikke kommunikationen omkring ansvarsområder er korrekt. 
->>>>>>> ca61cf7f725e84ba004dbe798403e6f79ba121c2
