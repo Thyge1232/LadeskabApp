@@ -105,6 +105,7 @@ classDiagram
     }
     
     class FileLogger {
+        + _logFilePath: string
         +Log(message: string) void
     }
     
