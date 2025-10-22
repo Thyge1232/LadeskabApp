@@ -23,24 +23,37 @@ Designet følger SOLID-principperne, med fokus på afkobling, fleksibilitet og s
 
 ## 2. Design for Testbarhed
 
+Systemet er designet med testbarhed som vores primære fokus. Der er lavet interfaces (IDoor, IDisplay, ILogger, osv), for at sikre lav kobling mellem klasserne. Dette gør det så muligt at teste hvert komponent isoleret via. Mock objekter, som eksempelvis NSubstitute i unit test. Alle afhængigheder bliver også injected via Constructor (Dependency Injection).
+
+Eksempelvis testes Stationcontrol-klassen ved at erstatte de konkrete implementationer af IDisplay, IChargeControl, IDoor, Osv med mocks.
+Dette gør det så muligt at lave præcise og kontrollerede testscenarier, hvor man kan simulere actions som eksempelvis dør-åbning og opladningsfejl uden fysisk hardware.
+
+
 
 ## 3. Refleksioner over Projektet
 
 ### Refleksion over Valgte Design
 
 #### Hvorfor blev dette design valgt?
-
+Dette design blev valgt for at lave et afkoblet system, som nemt kan vedligeholdes, testes og udvides. Vi har i forlængelse af dette istedet for at lave en fake lavet UsbChargerSimulator, som agere som en fake, men stadig har en reel implementering, som simulere en usbcharger, da vi ikke har selve hardwaren tilgængelig.
 
 #### Fordele
-
+- Systemet er modulært og let at udvide, fordi alle afhængiheder håndteres gennem interfaces og events.
+- Høj testbarhed, da komponenter kan testes isoleret via mocks.
+- Koden er overskuelig og følger SOLID-principperne, især Single Responsibility.
 
 #### Ulemper og Overvejelser
+- Alle interfaces og events kan gør systemet mere komplekst at sætte sig ind i hvis ikke man har kigget på det før.
+
 
 
 ### Refleksion over Arbejdsproces og Fordeling
 
 
 ### Refleksion over Fælles Repository og Continuous Integration (CI)
+
+Det har været nyt at arbejde indenfor Continuous Integration, hvor vi har skulle arbejde hver for sig, commite og pushe vores ændringer, for efterfølgende at arbejde videre på en andens fremskridt. Dette har givet os en god forståelse for hvordan arbejdet vil fungere ude blandt virksomheder. For os har det givet os nogle fordele, da vi hver især har forskellige styrker, som vi har implementeret bedst muligt i vores gruppearbejde. Et eksempel i dette tilfælde er at én har fokuseret på diagrammer, én har lavet unit test, én har implementeret systemet. Derudover har vi samtidig arbejdet indover hinandens arbejde, så man har haft en primær prioritet og hjulpet til,
+ån rav ted rovh
 
 #### Observationer
 
