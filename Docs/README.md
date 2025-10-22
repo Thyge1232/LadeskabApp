@@ -197,7 +197,7 @@ Der er identificeret fem komponenter i sekvensdiagrammet. ChargeControl fungerer
 
 Selve styringslogikken er pakket ind i et loop, som viser, at eventet CurrentValueEvent sendes løbende fra USBCharger til ChargeControl. ChargeControl lytter passivt efter ændringer i strømmen.
 
-De forskellige betingelser er pakket ind i alternatives, og loopet breakes, når en betingelse er opfyldt. For at holde komponenterne afkoblet sender ChargeControl events op til StationControl om, at opladningen er afsluttet eller der er opstået fejl. StationControl videresender disse events til ILogger.
+De forskellige betingelser er pakket ind i alternatives, og loopet breakes, når en betingelse er opfyldt. For at holde komponenterne afkoblet sender ChargeControl events op til StationControl om, at opladningen er afsluttet eller der er opstået fejl. StationControl reagrerer på event fra ChargeControl ved at kalde ILogger.
 
 Designet følger SOLID-principperne, med fokus på afkobling, fleksibilitet og skalerbarhed. Single Repsponsibility Princeple understøttes lideledes da ChargeControl kun tager sig af opladning, og StationControl tager sig af den overordtnede systemtilstand. Dette gør systemet lettere at udvide og vedligeholde.
 
