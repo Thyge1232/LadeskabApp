@@ -63,6 +63,8 @@ Det har været nyt at arbejde indenfor Continuous Integration, hvor vi har skull
 Under udviklingen har vi oplevet at brugen af GitLab CI gav et godt overblik over projektets stabilitet. Vi kunne hurtigt se hvis et commit brød buildet eller fik nogen tests til at fejle. På grund af det kunne vi rette fejlene tidligt i processen. Det blev på baggrund af det tydeligt hvor vigtigt det er med automatiserede tests og kontinuerlig integration
 
 #### Fordele
-
+- Det har givet os frihed til at arbejde med opgaven når vi selv har haft tid til det, og ikke været afhængig af at andre skal være til stede.
+- Vi har lært en stor del omkring Git, og hvordan det fungerer når man arbejder med konceptet Continuous Integration.
+- 
 
 #### Ulemper og Udfordringer
