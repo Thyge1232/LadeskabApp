@@ -1,6 +1,6 @@
 # Ladeskab til Mobiltelefon - Softwaredokumentation
 
-Der er lavet diagrammer med et format der hedder Mermaid. Det vises på gitlab blot ved at trykke 'display' i ovenstående boks.
+Der er lavet diagrammer med et format der hedder Mermaid. Det vises på gitlab blot ved at trykke 'display' i nedenstående boks.
 
 ## 1. Design og Arkitektur
 
