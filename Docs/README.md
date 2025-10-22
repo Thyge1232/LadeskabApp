@@ -34,6 +34,8 @@ Dette gør det så muligt at lave præcise og kontrollerede testscenarier, hvor 
 
 ### Refleksion over Valgte Design
 
+Det valgte design virkede for os meget intuitivt, da der først og fremmest var givet fem .cs-filer til at arbejde videre på. På den måde var fundamentet lavet, og der kunne så impleteres videre på systemet. I forhold til den resterende implementation, dragede vi inspiration fra kursets indhold, hvor der gerne skal være så løs kobling som muligt, så systemet bliver skalérbart.
+
 #### Hvorfor blev dette design valgt?
 Dette design blev valgt for at lave et afkoblet system, som nemt kan vedligeholdes, testes og udvides. Vi har i forlængelse af dette istedet for at lave en fake lavet UsbChargerSimulator, som agere som en fake, men stadig har en reel implementering, som simulere en usbcharger, da vi ikke har selve hardwaren tilgængelig.
 
@@ -49,11 +51,13 @@ Dette design blev valgt for at lave et afkoblet system, som nemt kan vedligehold
 
 ### Refleksion over Arbejdsproces og Fordeling
 
+For os har det givet os nogle fordele, da vi hver især har forskellige styrker, som vi har implementeret bedst muligt i vores gruppearbejde. Et eksempel i dette tilfælde er at én har fokuseret på diagrammer, én har lavet unit test, én har implementeret systemet. Derudover har vi samtidig arbejdet indover hinandens arbejde, så man har haft en primær prioritet og hjulpet til, hvor det er nødvendigt.
+
+En negativ ting til dette er at vi ikke har været fysisk til stede når vi har arbejdet på det, hvilket gør kommunikationen sværere.
 
 ### Refleksion over Fælles Repository og Continuous Integration (CI)
 
-Det har været nyt at arbejde indenfor Continuous Integration, hvor vi har skulle arbejde hver for sig, commite og pushe vores ændringer, for efterfølgende at arbejde videre på en andens fremskridt. Dette har givet os en god forståelse for hvordan arbejdet vil fungere ude blandt virksomheder. For os har det givet os nogle fordele, da vi hver især har forskellige styrker, som vi har implementeret bedst muligt i vores gruppearbejde. Et eksempel i dette tilfælde er at én har fokuseret på diagrammer, én har lavet unit test, én har implementeret systemet. Derudover har vi samtidig arbejdet indover hinandens arbejde, så man har haft en primær prioritet og hjulpet til,
-ån rav ted rovh
+Det har været nyt at arbejde indenfor Continuous Integration, hvor vi har skulle arbejde hver for sig, commite og pushe vores ændringer, for efterfølgende at arbejde videre på en andens fremskridt. Dette har givet os en god forståelse for hvordan arbejdet vil fungere ude blandt virksomheder. 
 
 #### Observationer
 
