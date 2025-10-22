@@ -235,14 +235,17 @@ Dette design blev valgt for at lave et afkoblet system, som nemt kan vedligehold
 #### Ulemper og Overvejelser
 - Alle interfaces og events kan gør systemet mere komplekst at sætte sig ind i hvis ikke man har kigget på det før.
 - I mindre projekter føles det lidt som ekstra arbejde, da afhængiheder og opsætningen kræver mere kode end et simpelt system.
+- Én stor ulempe, som også er meningen at det skal være er at det er et design af et system, hvor man skal implementere udenom hardwarekomponenter.
 
-
+## 4. Refleksion over arbejdsfordeling
 
 ### Refleksion over Arbejdsproces og Fordeling
 
 For os har det givet os nogle fordele, da vi hver især har forskellige styrker, som vi har implementeret bedst muligt i vores gruppearbejde. Et eksempel i dette tilfælde er at én har fokuseret på diagrammer, én har lavet unit test, én har implementeret systemet. Derudover har vi samtidig arbejdet indover hinandens arbejde, så man har haft en primær prioritet og hjulpet til, hvor det er nødvendigt.
 
 En negativ ting til dette er at vi ikke altid har været fysisk til stede når vi har arbejdet på det, hvilket gør kommunikationen sværere. Desuden har vi også brugt liveshare når vi sidder sammen da vi nogengange arbejder på samme filer og fandt det mere praktisk at kunne følge med hindanden i real-time, da vi ellers tit kommer til at arbejde ind over hindanden.
+
+## 5. Refleksion over arbejdsmetode
 
 ### Refleksion over Fælles Repository og Continuous Integration (CI)
 
