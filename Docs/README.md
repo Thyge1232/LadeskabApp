@@ -137,10 +137,11 @@ classDiagram
 
 
 Systemet er designet efter en klassisk 3-lags arkitektur.
-Øverste lag er Stationkontrol, som fungerer som højniveaumodellen og controlleren for hele systemet. Ved brug af Dependency Injection (DI) er denne klasse uafhængig af de konkrete lavniveau-moduler.
+Øverste lag er Stationkontrol, som fungerer som højniveaumodellen og controlleren for hele systemet. Ved brug af Dependency Injection (DI) er denne klasse uafhængig af de konkrete lavniveau-moduler. Dette sikre at det er muligt at udskifte komponenterne med mocks eller fakes under test. 
 Det midterste lag udgøres af interfaces, som alle er rene. De definerer systemets kontrakter og skaber en klar adskillelse og afkobling mellem lagene. 
 Nederste lag består af implementeringerne. Disse klasser opfylder de kontrakter, der er fastlagt af deres respektive interfaces.
-Strukturen sikrer samlet set, at systemet er afkoblet, uafhængigt og let at teste.
+
+Strukturen følger SOLID-principperne og sikrer samlet set, at systemet er afkoblet, uafhængigt og let at teste.
 
 ### Sekvensdiagram
 
@@ -198,7 +199,7 @@ Selve styringslogikken er pakket ind i et loop, som viser, at eventet CurrentVal
 
 De forskellige betingelser er pakket ind i alternatives, og loopet breakes, når en betingelse er opfyldt. For at holde komponenterne afkoblet sender ChargeControl events op til StationControl om, at opladningen er afsluttet eller der er opstået fejl. StationControl videresender disse events til ILogger.
 
-Designet følger SOLID-principperne, med fokus på afkobling, fleksibilitet og skalerbarhed. Dette gør systemet lettere at udvide og vedligeholde.
+Designet følger SOLID-principperne, med fokus på afkobling, fleksibilitet og skalerbarhed. Single Repsponsibility Princeple understøttes lideledes da ChargeControl kun tager sig af opladning, og StationControl tager sig af den overordtnede systemtilstand. Dette gør systemet lettere at udvide og vedligeholde.
 
 
 ## 2. Design for Testbarhed
