@@ -141,6 +141,8 @@ Det midterste lag udgøres af interfaces, som alle er rene. De definerer systeme
 Nederste lag består af implementeringerne. Disse klasser opfylder de kontrakter, der er fastlagt af deres respektive interfaces.
 Strukturen sikrer samlet set, at systemet er afkoblet, uafhængigt og let at teste.
 
+I forhold til det testbare design er der lavet en UsbChargerSimulator, som agerer en fake, da der er manglende hardware i dette system. Klassen har ansvar for at sende korrekte data videre ind i systemet og samtidig udsende events for at systemet kan have en form for mobiloplader. Denne klasse vil i et korrekt system erstattes af en mobiltelefon.
+
 ### Sekvensdiagram
 
 ```mermaid
@@ -191,6 +193,8 @@ sequenceDiagram
 
 ```
 
+Sekvensdiagrammet tager udgangspunkt i den del af kravsspecifikationen, hvor der bliver specificeret omkring opladningen. Nærmere beskrevet, stykket hvorpå mobilen tilkobles og den målte ladestrøm bliver målt og udsender et event.
+
 Der er identificeret fem komponenter i sekvensdiagrammet. ChargeControl fungerer som controllerklassen i designet, jf. opgavebeskrivelsen. De øvrige komponenter er Display og StationControl samt de to interfaces IUsbCharger og ILogger.
 
 Selve styringslogikken er pakket ind i et loop, som viser, at eventet CurrentValueEvent sendes løbende fra USBCharger til ChargeControl. ChargeControl lytter passivt efter ændringer i strømmen.
@@ -198,6 +202,7 @@ Selve styringslogikken er pakket ind i et loop, som viser, at eventet CurrentVal
 De forskellige betingelser er pakket ind i alternatives, og loopet breakes, når en betingelse er opfyldt. For at holde komponenterne afkoblet sender ChargeControl events op til StationControl om, at opladningen er afsluttet eller der er opstået fejl. StationControl videresender disse events til ILogger.
 
 Designet følger SOLID-principperne, med fokus på afkobling, fleksibilitet og skalerbarhed. Dette gør systemet lettere at udvide og vedligeholde.
+
 
 
 ## 2. Design for Testbarhed
@@ -247,4 +252,5 @@ Under udviklingen har vi oplevet at brugen af GitLab CI gav et godt overblik ove
 - Fordelen ved at benytte sig af dette koncept er også at sikre sig at systemet virker, ved hvert push. På denne måde sikrer vi også at når et andet gruppemedlem har pushet, så virker systemet og der skal ikke bruges timer på at debugge hvad en anden har lavet.
 
 #### Ulemper og Udfordringer
-En af de støreste udfordringer ved brugen af CI var at sikre, at alle testprojekter og afhængigheder blev korrekt inkluderet i build-processen. Små fejl i projektfilen eller manglede references kunne gøre at pipelinen fejlede, selvom koden virkede lokalt.  
+- En af de støreste udfordringer ved brugen af CI var at sikre, at alle testprojekter og afhængigheder blev korrekt inkluderet i build-processen. Små fejl i projektfilen eller manglede references kunne gøre at pipelinen fejlede, selvom koden virkede lokalt. 
+- Derudover er der også et par ulemper ved at arbejde på denne måde. Man risikerer hurtigt at lave merge conflicts når man arbejder udelukkende over Git, hvilket ikke er særlig hensigtsmæssigt og hurtigt kan blive noget rod, hvis ikke kommunikationen omkring ansvarsområder er korrekt. 
