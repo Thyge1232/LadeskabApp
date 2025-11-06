@@ -158,7 +158,8 @@ Kernen i systemets logik er en state machine, der styrer ladeskabets adfærd. `S
 
 Overgange mellem disse tilstande udløses af hændelser som RFID-scanning, og at døren åbnes eller lukkes.
 
-![State Machine Diagram](image.png)
+![State Machine Diagram](docs/image.png)
+
 
 ## Opladningslogik
 
